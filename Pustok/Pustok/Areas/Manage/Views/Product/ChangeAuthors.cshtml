@@ -1,0 +1,36 @@
+﻿
+@model List<Author>
+
+@{
+    ViewData["Title"] = "ChangeAuthors";
+}
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Name</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Author item in Model)
+        {
+        <tr>
+            <td>
+                @item.Name
+                        @if (item.IsDeleteAuthors)
+                        {
+                            <a class="btn btn-primary" asp-action="RestoreAuthor" asp-route-id="@item.Id">Restore</a>
+                        }
+                        else
+                        {
+                            <a class="btn btn-danger" asp-action="DeleteAuthor" asp-route-id="@item.Id">Delete</a>
+                        }
+                    </td>
+        </tr>
+        }
+    </tbody>
+</table>
+
+
+<a class="btn btn-primary" asp-action="AddAuthor">Add</a>

@@ -1,0 +1,35 @@
+﻿@model List<Genre>
+@{
+    ViewData["Title"] = "ChangeGenres";
+}
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Name</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Genre item in Model)
+        {
+        <tr>
+            <td>
+            @item.Name
+            @if (item.IsDeletedGenres)
+            {
+                <a class="btn btn-primary" asp-action="RestoreGenrer" asp-route-id="@item.Id">Restore</a>
+            }
+            else
+            {
+                <a class="btn btn-danger" asp-action="DeleteGenre" asp-route-id="@item.Id">Delete</a>
+            }
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+
+
+<a class="btn btn-primary" asp-action="AddGenre">Add</a>
+
